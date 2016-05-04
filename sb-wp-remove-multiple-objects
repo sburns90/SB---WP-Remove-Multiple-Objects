@@ -1,0 +1,52 @@
+<?php
+	/*
+	Plugin Name: SB - Remove Multiple Objects
+	Plugin URI: http://www.StephenBurns.net
+	Description: Removes / hides multiple objects based on their CSS DIV, or ID.
+	Version: 1.0
+	Author: Stephen Burns
+	Author URI: http://www.StephenBurns.net/
+	License: GPL2
+	*/
+   
+   	/*  Copyright 2015 Stephen Burns  (email : Stephen@StephenBurns.net)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	*/
+
+	/* NOTE:
+	 * This plugin also includes a few small PHP scripts that help customize 
+	 * the WordPress install to better fit the Staff Blogging platform that I developed for PHM School Corp.
+	 * */
+
+	/* TO DO:
+	 * UNFISHIED (4-18-16) Provide a user interface for admins to add their own CSS. 
+	 * */
+   
+?>
+
+<?php
+include ('includes/swap-yd-muso-footer.php');
+include ('includes/dc-prevent-persistent.php');
+//include ('includes/gde-button-removal.php');
+
+function rmo_hidefields() {
+    wp_enqueue_style('', plugins_url('style.css', __FILE__));
+}
+
+  add_action('admin_enqueue_scripts', 'rmo_hidefields');
+  add_action('login_enqueue_scripts', 'rmo_hidefields');
+	add_action('wp_enqueue_scripts', 'rmo_hidefields');
+	add_action('wp_after_admin_bar_render', 'rmo_hidefields');
+?>
